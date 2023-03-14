@@ -1,6 +1,17 @@
-// TODO: write your code here
-import sum from './basic';
+export default function orderByProps(obj, args) {
+    const arrSortByArgs = [];
+    const arrSortByAlphabet = [];
 
-console.log('worked');
+    for (let prop in obj) {
+        if (args.includes(prop)) {
+            arrSortByArgs.push({ key: prop, value: obj[prop] });
+        } else {
+            arrSortByAlphabet.push({ key: prop, value: obj[prop] });
+        }
 
-console.log(sum([1, 2]));
+    };
+
+    arrSortByAlphabet.sort((a, b) => a.key > b.key ? 1 : -1);
+
+    return [...arrSortByArgs, ...arrSortByAlphabet];
+};
